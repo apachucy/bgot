@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">House Randomizer</string>
+    <!--Type of game-->
+    <string name="base_game">Base Game</string>
+    <string name="game_first_addition">A Feast for Crows</string>
+    <string name="game_second_addition">Dance with Dragons</string>
+    <string name="game_third_addition_without_dragons">Mother of Dragons without Targaryen</string>
+    <string name="game_third_addition">Mother of Dragons</string>
+
+    <!--Houses -->
+    <string name="house_barethon">Barethon</string>
+    <string name="house_lannister">Lannister</string>
+    <string name="house_stark">Stark</string>
+    <string name="house_greyjoy">Greyjoy</string>
+    <string name="house_martell">Martell</string>
+    <string name="house_tyrell">Tyrell</string>
+    <string name="house_arryn">Arryn</string>
+    <string name="house_targaryen">Targaryen</string>
+    <!-- Others -->
+    <string name="number_of_players">%1$s - %2$s</string>
+
+    <!-- Messages -->
+    <string name="error_empty_text">Text should be not empty</string>
+    <string name="player_preference_info">Player Preference in descending order</string>
+
+    <!--default player -->
+    <string name="default_player_name">Player</string>
+</resources>

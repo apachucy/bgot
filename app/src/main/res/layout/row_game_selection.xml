@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="game"
+            type="unii.entertainment.randomizer.boardgame.got.business.logic.Game" />
+
+        <variable
+            name="clickHandler"
+            type="unii.entertainment.randomizer.boardgame.got.ui.adapter.AdapterClickHandler" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+
+        android:onClick="@{()->clickHandler.itemClicked(game)}"
+        android:orientation="vertical"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            style="@style/SelectableItemBackground">
+            <!-- ?android:selectableItemBackground -->
+            <TextView
+                android:id="@+id/game_nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="4sp"
+                android:layout_marginTop="4sp"
+                android:layout_marginEnd="4sp"
+                android:layout_marginBottom="4sp"
+                android:gravity="center"
+                android:text="@{game.name}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/base_game" />
+
+            <LinearLayout
+                android:id="@+id/game_house_iconsImageView"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_below="@id/game_nameTextView"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:iconsForDisplay="@{game.houseList}" />
+
+            <TextView
+                android:id="@+id/game_playersTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/game_house_iconsImageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/ic_person_outline_black_24dp"
+                android:gravity="center"
+                android:text="@{@string/number_of_players(String.valueOf(game.minPlayers), String.valueOf(game.maxPlayers))}"
+                tools:text="@string/base_game" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

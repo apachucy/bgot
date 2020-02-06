@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="housePreference"
+            type="unii.entertainment.randomizer.boardgame.got.business.logic.HousePreference">
+
+        </variable>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/house_sigil_imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="23dp"
+            app:layout_constraintEnd_toStartOf="@+id/popularity_seekBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@{housePreference.house.iconRes}" />
+
+        <SeekBar
+            android:id="@+id/popularity_seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:max="10"
+            android:min="0"
+            android:progress="@={housePreference.preference}"
+            app:layout_constraintBottom_toBottomOf="@+id/house_sigil_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/house_sigil_imageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="unii.entertainment.randomizer.boardgame.got.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_addPlayerFragment"
+            app:destination="@id/addPlayerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/addPlayerFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/addPlayerFragment"
+        android:name="unii.entertainment.randomizer.boardgame.got.ui.addplayer.AddPlayerFragment"
+        android:label="add_player_fragment"
+        tools:layout="@layout/add_player_fragment">
+        <argument
+            android:name="game"
+            app:argType="unii.entertainment.randomizer.boardgame.got.business.logic.Game" />
+        <action
+            android:id="@+id/action_addPlayerFragment_to_playerPreferencesFragment"
+            app:destination="@id/playerPreferencesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/addPlayerFragment" />
+        <action
+            android:id="@+id/action_addPlayerFragment_to_lotteryResultFragment"
+            app:destination="@id/lotteryResultFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerPreferencesFragment"
+        android:name="unii.entertainment.randomizer.boardgame.got.ui.playerpreferences.PlayerPreferencesFragment"
+        android:label="player_preferences_fragment"
+        tools:layout="@layout/player_preferences_fragment">
+        <argument
+            android:name="game"
+            app:argType="unii.entertainment.randomizer.boardgame.got.business.logic.Game" />
+        <action
+            android:id="@+id/action_playerPreferencesFragment_to_addPlayerFragment"
+            app:destination="@id/addPlayerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/addPlayerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/lotteryResultFragment"
+        android:name="unii.entertainment.randomizer.boardgame.got.ui.lotteryresult.LotteryResultFragment"
+        android:label="lottery_result_fragment"
+        tools:layout="@layout/lottery_result_fragment">
+        <argument
+            android:name="selectedGame"
+            app:argType="unii.entertainment.randomizer.boardgame.got.business.logic.Game" />
+    </fragment>
+</navigation>
