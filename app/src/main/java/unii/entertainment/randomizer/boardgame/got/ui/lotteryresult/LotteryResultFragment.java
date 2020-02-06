@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,8 +65,9 @@ public class LotteryResultFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Game selectedGame = LotteryResultFragmentArgs.fromBundle(getArguments()).getSelectedGame();
 
-        viewModel = ViewModelProviders
-                .of(this, new LotteryResultViewModelFactory(new PlayerRepository(getContext()), new GameRepository(getContext()), selectedGame))
+        viewModel = new ViewModelProvider(this,
+                new LotteryResultViewModelFactory(new PlayerRepository(getContext()),
+                        new GameRepository(getContext()), selectedGame))
                 .get(LotteryResultViewModel.class);
         list = viewModel.executeAlgorithm();
         adapter = new PlayerHouseMatchedAdapter(list);

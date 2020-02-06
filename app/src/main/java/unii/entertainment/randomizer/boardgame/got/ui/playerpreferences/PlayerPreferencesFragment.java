@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,7 +62,7 @@ public class PlayerPreferencesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Game game = PlayerPreferencesFragmentArgs.fromBundle(getArguments()).getGame();
 
-        mViewModel = ViewModelProviders.of(this,
+        mViewModel = new ViewModelProvider(this,
                 new PlayerPreferencesViewModelFactory(new PlayerRepository(getContext()),
                         game, getString(R.string.default_player_name)))
                 .get(PlayerPreferencesViewModel.class);

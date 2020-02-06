@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -73,8 +74,7 @@ public class AddPlayerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Game game = AddPlayerFragmentArgs.fromBundle(getArguments()).getGame();
         PlayerRepository playerRepository = new PlayerRepository(getContext());
-        mViewModel = ViewModelProviders
-                .of(this, new AddPlayerViewModelFactory(playerRepository, game))
+        mViewModel = new ViewModelProvider(this, new AddPlayerViewModelFactory(playerRepository, game))
                 .get(AddPlayerViewModel.class);
 
         binding.setSelectedGame(mViewModel.getSelectedGame());
@@ -82,7 +82,7 @@ public class AddPlayerFragment extends Fragment {
         binding.setViewModel(mViewModel);
 
 
-        mViewModel.getPlayerList().observe(this, playerPreferences -> {
+        mViewModel.getPlayerList().observe(getViewLifecycleOwner(), playerPreferences -> {
                     mViewModel.validPlayerNumbers(playerPreferences.size());
                 }
         );
@@ -90,9 +90,10 @@ public class AddPlayerFragment extends Fragment {
         adapter = new PlayerPreferenceAdapter(playerPreferencesList);
         recyclerView.setAdapter(adapter);
         ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new SwipeToDeleteCallback((PlayerPreferenceAdapter) adapter, playerRepository, getResources().getColor(R.color.colorPrimaryDark)));
+                ItemTouchHelper(new SwipeToDeleteCallback((PlayerPreferenceAdapter) adapter,
+                playerRepository, getResources().getColor(R.color.colorPrimaryDark)));
         itemTouchHelper.attachToRecyclerView(recyclerView);
-        mViewModel.isNumberOfPlayersValid().observe(this, aBoolean -> {
+        mViewModel.isNumberOfPlayersValid().observe(getViewLifecycleOwner(), aBoolean -> {
             binding.addNewPlayerFab.setEnabled(mViewModel.playersInUpperLimit());
             binding.lotteryFab.setEnabled(aBoolean &&
                     mViewModel.playersInRange());
